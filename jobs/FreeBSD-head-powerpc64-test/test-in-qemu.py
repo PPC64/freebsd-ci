@@ -33,11 +33,11 @@ child = pexpect.spawn(cmd)
 child.logfile = sys.stdout
 child.delaybeforesend = 0.5
 
-child.expect(re.compile("^login:", re.MULTILINE), timeout=600)
-forsend(child, "root")
+#child.expect(re.compile("^login:", re.MULTILINE), timeout=600)
+#forsend(child, "root")
 
-child.expect("#", timeout=300)
-forsend(child, "shutdown -p now")
+#child.expect("#", timeout=300)
+#forsend(child, "shutdown -p now")
 
 #wait up to 8 hours
 child.expect("Uptime:.*", timeout=28800)
