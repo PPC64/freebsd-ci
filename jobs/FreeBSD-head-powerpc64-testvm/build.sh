@@ -37,10 +37,15 @@ cat <<EOF | sudo tee ufs/etc/rc.conf
 ifconfig_llan0="DHCP"
 EOF
 
+# rc.local copied from:
+#     https://github.com/freebsd/freebsd-ci/blob/master/scripts/build/config/testvm/override/etc/rc.local
 cat <<EOF | sudo tee ufs/etc/rc.local
 #!/bin/sh -ex
 PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 export PATH
+
+set -x
+
 echo
 echo "--------------------------------------------------------------"
 echo "install kyua dependencies!"
@@ -49,13 +54,31 @@ env ASSUME_ALWAYS_YES=yes pkg update
 pkg install -y kyua
 echo
 echo "--------------------------------------------------------------"
-echo "start kyua tests!"
+echo "prepare meta dir for tests
 echo "--------------------------------------------------------------"
-cd /usr/tests
-/usr/local/bin/kyua test
-/usr/local/bin/kyua report --verbose --results-filter passed,skipped,xfail,broken,failed --output test-report.txt
-/usr/local/bin/kyua report-junit --output=test-report.xml
-shutdown -p now
+
+ddb script kdb.enter.panic="show pcpu;alltrace;dump;reset"
+
+TARDEV=/dev/da1
+METADIR=/meta
+
+ISTAR=\$(file -s \${TARDEV} | grep "POSIX tar archive" | wc -l)
+
+if [ \${ISTAR} -eq 1 ]; then
+	rm -fr \${METADIR}
+	mkdir -p \${METADIR}
+	tar xvf \${TARDEV} -C \${METADIR}
+	sh -ex \${METADIR}/run.sh
+	tar cvf \${TARDEV} -C \${METADIR} .
+else
+	echo "ERROR: \${TARDEV} is not a POSIX tar archive."
+	# Don't shutdown because this is not run in unattended mode
+	exit 1
+fi
+
+if [ -f \${METADIR}/auto-shutdown ]; then
+	shutdown -p now
+fi
 EOF
 
 sudo rm -f ufs/etc/resolv.conf
