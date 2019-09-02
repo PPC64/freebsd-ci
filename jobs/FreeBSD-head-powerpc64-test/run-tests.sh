@@ -27,7 +27,9 @@ BHYVE_EXTRA_DISK_PARAM=""
 METADIR=meta
 METAOUTDIR=meta-out
 
-fetch ${ARTIFACT_SERVER}/${ARTIFACT_SUBDIR}/${IMG_NAME}.xz
+#fetch ${ARTIFACT_SERVER}/${ARTIFACT_SUBDIR}/${IMG_NAME}.xz
+artifact/head/r351703/powerpc/powerpc64/disk-test.img.xz
+
 xz -fd ${IMG_NAME}.xz
 
 for i in `jot ${EXTRA_DISK_NUM}`; do
