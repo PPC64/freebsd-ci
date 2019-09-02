@@ -22,7 +22,7 @@ cmd = "qemu-system-ppc64 \
 -M pseries \
 -m {} \
 -drive file={}.if=scsi,index=0,format=raw \
--drive file=meta.tar
+-drive file=meta.tar \
 -nographic -vga none \
 -netdev user,id=mynet0 -device spapr-vlan,netdev=mynet0\
 ".format(TEST_VM_NAME, VM_MEM_SIZE, IMG_NAME)
