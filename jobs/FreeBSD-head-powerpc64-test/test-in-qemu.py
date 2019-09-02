@@ -19,7 +19,7 @@ def forsend(child, s):
 
 cmd = "qemu-system-ppc64 \
 -name {} \
--M pseries \
+-M pseries,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken,cap-hpt-max-page-size=16M \
 -m {} \
 -drive file={},if=scsi,index=0,format=raw \
 -drive file=meta.tar \
