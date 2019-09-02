@@ -28,7 +28,7 @@ METADIR=meta
 METAOUTDIR=meta-out
 
 #fetch ${ARTIFACT_SERVER}/${ARTIFACT_SUBDIR}/${IMG_NAME}.xz
-cp /usr/local/jenkins/workspace/FreeBSD-head-powerpc64-testvm/artifact/head/r351703/powerpc/powerpc64/disk-test.img.xz .
+cp /usr/local/jenkins/workspace/FreeBSD-head-powerpc64-testvm/artifact/head/r${SVN_REVISION}/powerpc/powerpc64/disk-test.img.xz .
 
 xz -fd ${IMG_NAME}.xz
 
