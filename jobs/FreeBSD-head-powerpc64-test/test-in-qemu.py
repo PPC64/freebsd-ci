@@ -21,7 +21,7 @@ cmd = "qemu-system-ppc64 \
 -name {} \
 -M pseries \
 -m {} \
--drive file={}.if=scsi,index=0,format=raw \
+-drive file={},if=scsi,index=0,format=raw \
 -drive file=meta.tar \
 -nographic -vga none \
 -netdev user,id=mynet0 -device spapr-vlan,netdev=mynet0\
