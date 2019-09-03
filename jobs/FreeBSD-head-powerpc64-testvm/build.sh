@@ -89,7 +89,7 @@ sudo makefs -B be -d 6144 -t ffs -f 200000 -s 2g -o version=2,bsize=32768,fsize=
 
 # Note: BSD slices container is not working when cross created from amd64.
 #       As workaround, add UFS image directly on MBR partition  #2
-mkimg -a1 -s mbr -f raw \
+mkimg -P 4K -a1 -s mbr -f raw \
 	-p prepboot:=ufs/boot/boot1.elf \
 	-p freebsd:=ufs.img \
 	-p freebsd::1G \
