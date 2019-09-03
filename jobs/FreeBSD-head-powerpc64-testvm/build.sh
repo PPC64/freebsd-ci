@@ -80,6 +80,7 @@ if [ -f \${METADIR}/auto-shutdown ]; then
 	shutdown -p now
 fi
 EOF
+sudo rm -f ufs/etc/rc.local
 
 sudo rm -f ufs/etc/resolv.conf
 
