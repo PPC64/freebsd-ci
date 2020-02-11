@@ -37,16 +37,16 @@ child.delaybeforesend = 0.5
 child.expect(re.compile("^login:", re.MULTILINE), timeout=600)
 forsend(child, "root")
 
-child.expect("#", timeout=600)
+child.expect("#", timeout=1000)
 forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
 
 child.expect("#", timeout=600)
 forsend(child, "pkg install -y kyua")
 
-child.expect("#", timeout=300)
+child.expect("#", timeout=1000)
 forsend(child, "cd /usr/tests")
 
-child.expect("#", timeout=300)
+child.expect("#", timeout=1000)
 forsend(child, "/usr/local/bin/kyua test")
 
 child.expect("#", timeout=72000)
@@ -58,7 +58,7 @@ forsend(child, "/usr/local/bin/kyua report-junit --output=test-report.xml")
 child.expect("#", timeout=1000)
 forsend(child, "ifconfig")
 
-child.expect("#", timeout=300)
+child.expect("#", timeout=1000)
 forsend(child, "date")
 
 
