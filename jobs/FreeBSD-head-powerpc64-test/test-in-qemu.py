@@ -22,8 +22,8 @@ cmd = "qemu-system-ppc64 \
 -smp {} \
 -M pseries,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken,cap-hpt-max-page-size=16M \
 -m {} \
--drive file={},if=virtio,index=0,format=raw \
 -drive file=meta.tar,if=virtio,index=1,format=raw \
+-drive file={},if=virtio,index=0,format=raw \
 -nographic -vga none \
 -netdev user,id=ppcnet0 -device virtio-net-pci,netdev=ppcnet0\
 ".format(TEST_VM_NAME, VM_CPU_COUNT, VM_MEM_SIZE, IMG_NAME)
