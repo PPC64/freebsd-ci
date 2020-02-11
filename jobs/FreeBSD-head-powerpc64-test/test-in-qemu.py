@@ -40,16 +40,16 @@ forsend(child, "root")
 child.expect("#", timeout=1000)
 forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
 
-child.expect("#", timeout=600)
+child.expect("#", timeout=1000)
 forsend(child, "pkg install -y kyua")
 
 child.expect("#", timeout=1000)
 forsend(child, "cd /usr/tests")
 
-child.expect("#", timeout=1000)
+child.expect("#", timeout=72000)
 forsend(child, "/usr/local/bin/kyua test")
 
-child.expect("#", timeout=72000)
+child.expect("#", timeout=1000)
 forsend(child, "/usr/local/bin/kyua report --verbose --results-filter passed,skipped,xfail,broken,failed --output test-report.txt")
 
 child.expect("#", timeout=1000)
