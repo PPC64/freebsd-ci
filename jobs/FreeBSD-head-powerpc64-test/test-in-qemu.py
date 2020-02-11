@@ -22,7 +22,7 @@ cmd = "qemu-system-ppc64 \
 -smp {} \
 -M pseries,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken,cap-hpt-max-page-size=16M \
 -m {} \
--drive file=meta.tar,format=raw,if=virtio
+-drive file=meta.tar,format=raw,if=virtio \
 -drive file={},if=virtio,index=0,format=raw \
 -nographic -vga none \
 -netdev user,id=mynet0 -device spapr-vlan,netdev=mynet0\
