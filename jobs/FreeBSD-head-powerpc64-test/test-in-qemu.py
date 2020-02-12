@@ -44,7 +44,7 @@ forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
 child.expect(prompt, timeout=1000)
 
 forsend(child, "pkg install -y kyua")
-child.expect(promptout=1000)
+child.expect(prompt, timeout=1000)
 
 forsend(child, "cd /usr/tests")
 child.expect(prompt, timeout=1000)
