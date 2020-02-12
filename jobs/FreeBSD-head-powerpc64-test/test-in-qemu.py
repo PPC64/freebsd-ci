@@ -34,7 +34,7 @@ child = pexpect.spawn(cmd)
 child.logfile = sys.stdout
 child.delaybeforesend = 0.5
 
-prompt = "~ #"
+prompt = " #"
 
 child.expect(re.compile("^login:", re.MULTILINE), timeout=1000)
 forsend(child, "root")
