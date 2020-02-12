@@ -34,33 +34,38 @@ child = pexpect.spawn(cmd)
 child.logfile = sys.stdout
 child.delaybeforesend = 0.5
 
+prompt = "kyuatestprompt # "
+
 child.expect(re.compile("^login:", re.MULTILINE), timeout=1000)
 forsend(child, "root")
-
 child.expect("#", timeout=1000)
+
+child.sendline("set prompt=\"%s\"" % (prompt))
+child.expect(prompt, timeout=1000)
+
 forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
+child.expect(prompt, timeout=1000)
 
-child.expect("#", timeout=1000)
 forsend(child, "pkg install -y kyua")
+child.expect(promptout=1000)
 
-child.expect("#", timeout=1000)
 forsend(child, "cd /usr/tests")
+child.expect(prompt, timeout=1000)
 
-child.expect("#", timeout=72000)
 forsend(child, "/usr/local/bin/kyua test")
+child.expect(prompt, timeout=72000)
 
-child.expect("#", timeout=1000)
 forsend(child, "/usr/local/bin/kyua report --verbose --results-filter passed,skipped,xfail,broken,failed --output test-report.txt")
+child.expect(prompt, timeout=1000)
 
-child.expect("#", timeout=1000)
 forsend(child, "/usr/local/bin/kyua report-junit --output=test-report.xml")
+child.expect(prompt, timeout=1000)
 
-child.expect("#", timeout=1000)
 forsend(child, "ifconfig")
+child.expect(prompt, timeout=1000)
 
-child.expect("#", timeout=1000)
 forsend(child, "date")
-
+child.expect(prompt, timeout=1000)
 
 forsend(child, "shutdown -p now")
 
