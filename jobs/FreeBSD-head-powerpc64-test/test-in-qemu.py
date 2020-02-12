@@ -40,9 +40,6 @@ child.expect(re.compile("^login:", re.MULTILINE), timeout=1000)
 forsend(child, "root")
 child.expect(prompt, timeout=1000)
 
-child.sendline("set prompt=\"%s\"" % (prompt))
-child.expect(prompt, timeout=1000)
-
 forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
 child.expect(prompt, timeout=1000)
 
