@@ -13,9 +13,10 @@ TEST_VM_NAME = os.environ['TEST_VM_NAME']
 
 
 def forsend(child, s):
-    for c in s:
-        child.send(c)
-    child.sendline()
+#    for c in s:
+#        child.send(c)
+#    child.sendline()
+     child.sendline(s)
 
 cmd = "qemu-system-ppc64 \
 -name {} \
