@@ -13,10 +13,9 @@ TEST_VM_NAME = os.environ['TEST_VM_NAME']
 
 
 def forsend(child, s):
-#    for c in s:
-#        child.send(c)
-#    child.sendline()
-     child.sendline(s)
+    for c in s:
+        child.send(c)
+    child.sendline()
 
 cmd = "qemu-system-ppc64 \
 -name {} \
@@ -35,11 +34,11 @@ child = pexpect.spawn(cmd)
 child.logfile = sys.stdout
 child.delaybeforesend = 0.5
 
-prompt = "kyuatestprompt # "
+prompt = "~ #"
 
 child.expect(re.compile("^login:", re.MULTILINE), timeout=1000)
 forsend(child, "root")
-child.expect("#", timeout=1000)
+child.expect(prompt, timeout=1000)
 
 child.sendline("set prompt=\"%s\"" % (prompt))
 child.expect(prompt, timeout=1000)
