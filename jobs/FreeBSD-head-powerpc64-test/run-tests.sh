@@ -29,7 +29,7 @@ METAOUTDIR=meta-out
 
 #fetch ${ARTIFACT_SERVER}/${ARTIFACT_SUBDIR}/${IMG_NAME}.xz
 rm -v ./disk-test.img*
-wget http://10.10.71.21:8180/jenkins/job/FreeBSD-head-powerpc64-testvm/ws/artifact/head/r357757/powerpc/powerpc64/disk-test.img.xz -o ./disk-test.img.xz
+wget http://10.10.71.21:8180/jenkins/job/FreeBSD-head-powerpc64-testvm/ws/artifact/head/r357757/powerpc/powerpc64/disk-test.img.xz -O ./disk-test.img.xz
 
 xz -fd ${IMG_NAME}.xz
 
