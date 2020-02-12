@@ -20,7 +20,7 @@ def forsend(child, s):
 cmd = "qemu-system-ppc64 \
 -name {} \
 -smp {} \
--M pseries,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken,cap-hpt-max-page-size=16M \
+-M pseries,cap-cfpc=broken,cap-sbbc=broken,cap-ibs=broken \
 -m {} \
 -drive file=meta.tar,if=virtio,index=1,format=raw \
 -drive file={},if=virtio,index=0,format=raw \
