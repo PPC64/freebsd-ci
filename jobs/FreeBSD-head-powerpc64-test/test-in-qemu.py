@@ -36,35 +36,35 @@ child.delaybeforesend = 0.5
 
 prompt = " #"
 
-child.expect(re.compile("^login:", re.MULTILINE), timeout=1000)
+child.expect(re.compile("^login:", re.MULTILINE))
 forsend(child, "root")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "env ASSUME_ALWAYS_YES=yes pkg update")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "pkg install -y kyua")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "cd /usr/tests")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "/usr/local/bin/kyua test")
-child.expect(prompt, timeout=72000)
+child.expect(prompt)
 
 forsend(child, "/usr/local/bin/kyua report --verbose --results-filter passed,skipped,xfail,broken,failed --output test-report.txt")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "/usr/local/bin/kyua report-junit --output=test-report.xml")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "ifconfig")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "date")
-child.expect(prompt, timeout=1000)
+child.expect(prompt)
 
 forsend(child, "shutdown -p now")
 
 #wait up to 8 hours
-child.expect("Uptime:.*", timeout=28800)
+child.expect("Uptime:.*")
