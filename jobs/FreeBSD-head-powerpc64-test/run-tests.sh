@@ -57,7 +57,8 @@ export IMG_NAME=${IMG_NAME}
 export VM_CPU_COUNT=${VM_CPU_COUNT}
 export VM_MEM_SIZE=${VM_MEM_SIZE}
 export TEST_VM_NAME=${TEST_VM_NAME}
-python -u ${JOB_BASE}/test-in-qemu.py
+#python -u ${JOB_BASE}/test-in-qemu.py
+python -u jobs/FreeBSD-head-powerpc64-test/test-in-qemu.py
 
 echo "qemu return code = $rc"
 
