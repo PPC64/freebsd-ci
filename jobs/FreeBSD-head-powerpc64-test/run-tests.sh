@@ -55,7 +55,7 @@ export IMG_NAME=${IMG_NAME}
 export VM_CPU_COUNT=${VM_CPU_COUNT}
 export VM_MEM_SIZE=${VM_MEM_SIZE}
 export TEST_VM_NAME=${TEST_VM_NAME}
-/usr/local/bin/python2.7 ${JOB_BASE}/test-in-qemu.py
+/usr/local/bin/python2.7 -u ${JOB_BASE}/test-in-qemu.py
 
 echo "qemu return code = $rc"
 
