@@ -30,7 +30,7 @@ cmd = "qemu-system-ppc64 \
 
 print(cmd)
 
-child = pexpect.spawn(cmd)
+child = pexpect.spawn(cmd, timeout=86400)
 child.logfile = sys.stdout
 child.delaybeforesend = 0.5
 
